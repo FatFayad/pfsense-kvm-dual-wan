@@ -1,0 +1,37 @@
+# Debian Linux bridge config for a 4-port NIC passed into KVM pfSense.
+# Swap enp5s0f0 / enp6s0f0 etc. with your own port names from `ip -br link`.
+
+source /etc/network/interfaces.d/*
+
+auto lo
+iface lo inet loopback
+
+# WAN 1 Bridge (ISP 1 - PPPoE Fiber)
+auto br-wan1
+iface br-wan1 inet manual
+    bridge_ports enp5s0f0
+    bridge_stp off
+    bridge_fd 0
+
+# WAN 2 Bridge (ISP 2 - DHCP Broadband)
+auto br-wan2
+iface br-wan2 inet manual
+    bridge_ports enp5s0f1
+    bridge_stp off
+    bridge_fd 0
+
+# Main LAN Bridge
+auto br-lan
+iface br-lan inet static
+    address 192.168.10.2/24
+    gateway 192.168.10.1
+    bridge_ports enp6s0f1
+    bridge_stp off
+    bridge_fd 0
+
+# Isolated Access-Point Subnet Bridge
+auto br-ap
+iface br-ap inet manual
+    bridge_ports enp6s0f0
+    bridge_stp off
+    bridge_fd 0

@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="arch-svg" viewBox="0 0 840 404" role="img"
+            aria-label="Sanitized home network diagram: dual-WAN optical links feed a virtualized pfSense router on a Debian KVM and Docker host, separating a priority workstation LAN from an isolated Wi-Fi and household segment.">
+            <style>:root{--ink:#14202b;--paper:#f3f6f8;--card:#ffffff;--line:#d3dce3;--muted:#55656f;--link:#0b6f78;--signal:#b07a00;--ok:#157f4b}@media(prefers-color-scheme:dark){:root{--ink:#e6eef3;--paper:#0f1a22;--card:#16252f;--line:#2a3d4a;--muted:#9db0bc;--link:#58c4cf;--signal:#e8b73a;--ok:#34d399}}text{font-family:system-ui,-apple-system,Segoe UI,sans-serif}</style>
+<defs>
+              <marker id="arr-link" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--link)" />
+              </marker>
+              <marker id="arr-warn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--signal)" />
+              </marker>
+              <marker id="arr-muted" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="var(--muted)" />
+              </marker>
+            </defs>
+
+            <g>
+              <rect x="160" y="6" width="210" height="46" rx="8" fill="var(--card)" stroke="var(--link)" stroke-width="1.5" />
+              <text x="265" y="25" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink)">ISP 1 · Primary WAN</text>
+              <text x="265" y="42" text-anchor="middle" font-size="12" fill="var(--muted)">Optical ONT · PPPoE</text>
+
+              <rect x="470" y="6" width="210" height="46" rx="8" fill="var(--card)" stroke="var(--signal)" stroke-width="1.5" />
+              <text x="575" y="25" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink)">ISP 2 · Failover WAN</text>
+              <text x="575" y="42" text-anchor="middle" font-size="12" fill="var(--muted)">Optical ONT · DHCP</text>
+            </g>
+
+            <rect x="16" y="72" width="808" height="206" rx="12" fill="var(--paper)" stroke="var(--line)" stroke-width="1.5" />
+            <text x="32" y="91" font-size="12" font-weight="700" letter-spacing="0.04em" fill="var(--muted)">HOME SERVER (KVM + DOCKER)</text>
+
+            <path d="M 265 52 C 265 78, 345 70, 345 96" fill="none" stroke="var(--link)" stroke-width="2" marker-end="url(#arr-link)" />
+            <path d="M 575 52 C 575 78, 435 70, 435 96" fill="none" stroke="var(--signal)" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arr-warn)" />
+
+            <rect x="240" y="98" width="300" height="50" rx="8" fill="var(--card)" stroke="var(--ok)" stroke-width="2" />
+            <rect x="240" y="98" width="300" height="50" rx="8" fill="var(--ok)" fill-opacity="0.08" />
+            <text x="390" y="119" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink)">pfSense Firewall &amp; Router (VM)</text>
+            <text x="390" y="137" text-anchor="middle" font-size="12" fill="var(--muted)">Dual-WAN policy, NAT &amp; segmentation</text>
+
+            <rect x="604" y="98" width="196" height="50" rx="8" fill="var(--card)" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="5 3" />
+            <text x="702" y="119" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink)">Linux Host Bridge</text>
+            <text x="702" y="137" text-anchor="middle" font-size="12" fill="var(--muted)">Trunk to Docker &amp; APs</text>
+
+            <path d="M 540 123 L 600 123" fill="none" stroke="var(--muted)" stroke-width="1.75" marker-end="url(#arr-muted)" />
+
+            <rect x="180" y="164" width="580" height="100" rx="10" fill="var(--card)" stroke="var(--line)" stroke-width="1.25" />
+            <text x="194" y="182" font-size="12" font-weight="700" letter-spacing="0.03em" fill="var(--muted)">CONTAINERIZED SERVICES (DOCKER / COMPOSE)</text>
+
+            <path d="M 684 148 L 684 161" fill="none" stroke="var(--muted)" stroke-width="1.75" marker-end="url(#arr-muted)" />
+
+            <g>
+              <rect x="192" y="191" width="132" height="63" rx="7" fill="var(--paper)" stroke="var(--line)" stroke-width="1" />
+              <text x="258" y="209" text-anchor="middle" font-size="12" font-weight="700" fill="var(--link)">Access &amp; Edge</text>
+              <text x="258" y="227" text-anchor="middle" font-size="12" fill="var(--ink)">TLS Reverse Proxy</text>
+              <text x="258" y="244" text-anchor="middle" font-size="12" fill="var(--muted)">VPN &amp; PXE Boot</text>
+
+              <rect x="334" y="191" width="132" height="63" rx="7" fill="var(--paper)" stroke="var(--line)" stroke-width="1" />
+              <text x="400" y="209" text-anchor="middle" font-size="12" font-weight="700" fill="var(--link)">Observability</text>
+              <text x="400" y="227" text-anchor="middle" font-size="12" fill="var(--ink)">Host Telemetry</text>
+              <text x="400" y="244" text-anchor="middle" font-size="12" fill="var(--muted)">SMART &amp; Metrics</text>
+
+              <rect x="476" y="191" width="132" height="63" rx="7" fill="var(--paper)" stroke="var(--line)" stroke-width="1" />
+              <text x="542" y="209" text-anchor="middle" font-size="12" font-weight="700" fill="var(--link)">Self-Hosted</text>
+              <text x="542" y="227" text-anchor="middle" font-size="12" fill="var(--ink)">E-Portfolio &amp; Web</text>
+              <text x="542" y="244" text-anchor="middle" font-size="12" fill="var(--muted)">Media &amp; IoT Hub</text>
+
+              <rect x="618" y="191" width="132" height="63" rx="7" fill="var(--paper)" stroke="var(--line)" stroke-width="1" />
+              <text x="684" y="209" text-anchor="middle" font-size="12" font-weight="700" fill="var(--link)">Dev &amp; Admin</text>
+              <text x="684" y="227" text-anchor="middle" font-size="12" fill="var(--ink)">Web IDE &amp; DB UI</text>
+              <text x="684" y="244" text-anchor="middle" font-size="12" fill="var(--muted)">VPN-Only Access</text>
+            </g>
+
+            <path d="M 240 123 L 116 123 Q 106 123 106 133 L 106 302" fill="none" stroke="var(--link)" stroke-width="2.5" marker-end="url(#arr-link)" />
+            <rect x="40" y="200" width="132" height="24" rx="5" fill="var(--card)" stroke="var(--link)" stroke-width="1" />
+            <text x="106" y="216" text-anchor="middle" font-size="12" font-weight="600" fill="var(--link)">Priority Subnet</text>
+
+            <path d="M 786 148 L 786 285 Q 786 293 778 293 L 560 293 Q 552 293 552 299 L 552 302" fill="none" stroke="var(--signal)" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arr-warn)" />
+            <rect x="614" y="281" width="128" height="22" rx="5" fill="var(--card)" stroke="var(--signal)" stroke-width="1" />
+            <text x="678" y="296" text-anchor="middle" font-size="12" font-weight="600" fill="var(--signal)">Isolated Segment</text>
+
+            <g>
+              <rect x="16" y="306" width="240" height="90" rx="10" fill="var(--card)" stroke="var(--link)" stroke-width="2" />
+              <rect x="16" y="306" width="240" height="90" rx="10" fill="var(--link)" fill-opacity="0.06" />
+              <text x="32" y="326" font-size="12" font-weight="700" letter-spacing="0.04em" fill="var(--link)">PRIORITY LAN</text>
+              <text x="32" y="349" font-size="13" font-weight="700" fill="var(--ink)">Main Workstation</text>
+              <text x="32" y="368" font-size="12" fill="var(--muted)">Dedicated low-latency path</text>
+              <text x="32" y="384" font-size="12" fill="var(--muted)">Isolated from client Wi-Fi</text>
+
+              <rect x="280" y="306" width="544" height="90" rx="10" fill="var(--card)" stroke="var(--signal)" stroke-width="1.5" />
+              <rect x="280" y="306" width="544" height="90" rx="10" fill="var(--signal)" fill-opacity="0.05" />
+              <text x="296" y="326" font-size="12" font-weight="700" letter-spacing="0.04em" fill="var(--signal)">SECONDARY SEGMENT (HOUSEHOLD &amp; WI-FI ISOLATION)</text>
+
+              <rect x="294" y="337" width="146" height="48" rx="7" fill="var(--paper)" stroke="var(--line)" stroke-width="1" />
+              <text x="367" y="357" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">Edge Router / AP</text>
+              <text x="367" y="375" text-anchor="middle" font-size="12" fill="var(--muted)">Segment uplink</text>
+
+              <path d="M 440 361 L 458 361" fill="none" stroke="var(--signal)" stroke-width="1.75" marker-end="url(#arr-warn)" />
+
+              <rect x="462" y="337" width="146" height="48" rx="7" fill="var(--paper)" stroke="var(--line)" stroke-width="1" />
+              <text x="535" y="357" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">Core Switch / AP</text>
+              <text x="535" y="375" text-anchor="middle" font-size="12" fill="var(--muted)">Local distribution</text>
+
+              <path d="M 608 361 L 626 361" fill="none" stroke="var(--signal)" stroke-width="1.75" marker-end="url(#arr-warn)" />
+
+              <rect x="630" y="337" width="180" height="48" rx="7" fill="var(--paper)" stroke="var(--line)" stroke-width="1" />
+              <text x="720" y="357" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">APs &amp; Endpoints</text>
+              <text x="720" y="375" text-anchor="middle" font-size="12" fill="var(--muted)">Rooms · TVs · Mobile</text>
+            </g>
+          </svg>
